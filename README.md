@@ -8,6 +8,7 @@ Janurary 2020:
 
 1. 
 sudo apt update
+
 sudo apt upgrade -y
 
 2.
