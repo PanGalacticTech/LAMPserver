@@ -13,7 +13,9 @@ sudo apt upgrade -y
 
 2.
 sudo apt-get install apache2 -y
+
 sudo a2enmod rewrite
+
 sudo service apache2 restart
 
 3.
@@ -22,13 +24,17 @@ sudo nano /etc/apache2/apache2.conf
 and change the AllowOverride None to AllowOverride All as shown below:
 
 <Directory /var/www/>
+
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
+        
 </Directory>
 
 …then restart Apache2:
+
 sudo service apache2 restart
+
 
 4. 
 Apache 2 Default page should now be visible on static IP address of RasPi
@@ -43,7 +49,9 @@ sudo apt-get install php libapache2-mod-php -y
 Create New PHP File and Delete the old HTML index file:
 
 cd /var/www/html
+
 sudo nano index.php
+
 
 enter simple php test line, eg
 <?php echo "Hello World"; ?>
@@ -54,22 +62,37 @@ sudo service apache2 restart
 
 7.
 Install mysql:
+
 sudo apt-get install mariadb-server mariadb-client php-mysql -y
+
 sudo service apache2 restart
+
 
 8.
 Install phpMyAdmin
+
 In order to manage our MySQL databases, it’s far easier to use phpMyAdmin so let’s go ahead and install it by entering the following command, but note* you’ll be asked the following questions during the installation process:
+
 
 Automatic Configuration? – 
 Choose
+
 [*]apache2 with your Spacebar,
 hit Tab then Enter
 Configure database for phpmyadmin with dbconfig-common? – Choose Yes
 
-sudo apt-get install phpmyadmin -y
+sudo apt-get install phpmyadmin -y  
+
+THIS DOES NOT WORK IF NOT ON PI. Instead:
+look up how to install phpmyadmin on debian 10
+https://www.linuxbabe.com/debian/install-phpmyadmin-apache-lamp-debian-10-buster
+
+
 
 You should now be able to access phpMyAdmin from browser xxx.xxx.xxx.xxx/phpMyAdmin
+
+
+OKAY ALT INSTRUCTIONS LANDED US HERE, but some of the rest of this may already be done. watch out.
 
 
 9. 
