@@ -1,0 +1,84 @@
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\  Uncomplicated Fire Wall ~~~~ UFW /////////////////////////////////////////
+
+#### ufw Firewall Set up ####
+
+
+
+ sudo apt install ufw
+ 
+ 
+ sudo ufw status verbose
+ 
+ 
+ 
+ 
+ // Make Sure SSH is enabled before enabling Firewall!!!
+ 
+  sudo ufw enable
+  
+  
+  sudo ufw disable
+  
+  
+  // Display list of app profiles
+  sudo ufw app list
+  
+  // Specific Info on apps inc port
+  sudo ufw app info 'Apache'
+  
+  
+// Examples:
+
+  sudo ufw allow ssh
+  
+  sudo ufw allow 2222/tcp
+  
+  sudo ufw deny ssh/tcp
+  sudo ufw deny 2222/tcp  [If using custom SSH port]
+  
+  $ sudo ufw allow http     [By service name]
+$ sudo ufw allow 80/tcp   [By port number]
+$ sudo ufw allow 'Apache' [By application profile]
+Open Port 443 HTTPS on UFW
+$ sudo ufw allow https
+$ sudo ufw allow 443/tcp
+$ sudo ufw allow 'Apache Secure'
+
+
+// Ranges
+
+sudo ufw allow 5000:5003/tcp
+sudo ufw allow 5000:5003/udp
+
+Allow Specific IP Addresses:
+If you want to allow connections on all ports from specific IP address 192.168.56.1, 
+then you need to specify from before the IP address.
+
+$ sudo ufw allow from 192.168.56.1
+
+
+Allow Specific IP Addresses on Specific Port
+To allow connection on a specific port (for example port 22) from your home machine with IP address of 192.168.56.1, then you need to add any port and the port number after the IP address as shown.
+
+$ sudo ufw allow from 192.168.56.1 to any port 22
+Allow Network Subnets to Specific Port
+To allow connections for particular IP addresses ranging from 192.168.1.1 to 192.168.1.254 to port 22 (SSH), run the following command.
+
+$ sudo ufw allow from 192.168.1.0/24 to any port 22
+
+
+
+
+
+Delete UFW Rules
+There are 2 ways to delete UFW rules, by rule number and by actual rule.
+
+To delete a UFW rules by using rule number, first you need to list rules by numbers using the following command.
+
+$ sudo ufw status numbered
+
+$ sudo ufw delete 1
+The second method is to delete a rule by using the actual rule, for example to delete a rule, specify the port number with protocol as shown.
+
+$ sudo ufw delete allow 22/tcp
