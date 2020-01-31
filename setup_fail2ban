@@ -1,0 +1,49 @@
+
+apt-get update && apt-get upgrade -y
+
+
+apt-get install fail2ban
+
+
+(Optional)
+apt-get install sendmail-bin sendmail
+
+
+Fail2ban reads .conf configuration files first,
+then .local files override any settings.
+Because of this, all changes to the configuration
+are generally done in .local files,
+leaving the .conf files untouched.
+
+
+Copy file to fail2ban.local:
+
+cp /etc/fail2ban/fail2ban.conf /etc/fail2ban/fail2ban.local
+
+
+The jail.conf file will enable Fail2ban for SSH by
+default for Debian and Ubuntu, but not CentOS. 
+All other protocols and configurations (HTTP, FTP, etc.)
+are commented out. If you want to change this, create a jail.local 
+for editing:
+
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+To ignore specific IPs, add them to the ignoreip line.
+By default, this command will not ban the localhost. 
+If you work from a single IP address often, 
+it may be beneficial to add it to the ignore list:
+
+bantime: The length of time in seconds for which an IP is banned.
+If set to a negative number, the ban will be permanent. 
+The default value of 600 is set to ban an IP for a 10-minute duration.
+
+findtime: The length of time between login attempts before a ban is set. 
+For example, if Fail2ban is set to ban an IP after five (5) 
+failed log-in attempts, those 5 attempts must occur 
+within the set 10-minute findtime limit. 
+The findtime value should be a set number of seconds.
+
+maxretry: How many attempts can be made to access 
+the server from a single IP before a ban is imposed. 
+The default is set to 3.
