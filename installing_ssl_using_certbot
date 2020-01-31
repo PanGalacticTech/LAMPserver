@@ -1,0 +1,30 @@
+
+// Instructions from:
+
+https://www.tecmint.com/setup-free-ssl-certificate-for-apache-on-debian-10/
+
+
+First Make sure apache is running virtual hosts:
+
+
+sudo apt update
+
+ sudo apt install python-certbot-apache -t buster-backports
+ 
+ sudo certbot --apache -d your_domain -d www.your_domain
+
+
+make sure firewall is set up to allow https service
+
+ sudo ufw allow 443/tcp
+ 
+ sudo ufw reload
+ 
+  sudo ufw status
+  
+  
+  
+ 
+ 
+ 
+
