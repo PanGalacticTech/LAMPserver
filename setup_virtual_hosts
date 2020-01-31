@@ -24,10 +24,10 @@ Create index.html:
  add some HTML Content:
  <html>
     <head>
-        <title>Welcome to TecMint.com</title>
+        <title>Welcome to Your Private Host</title>
     </head>
     <body>
-        <h1>Howdy Geeks!</h1>
+        <h1>Meow!</h1>
     </body>
 </html>
  
@@ -66,6 +66,20 @@ Now reload your web server and notice the changes for your domain.
 
 
 Now SSL Can be setup for https:// accesss
+
+
+if wordpress site is already running, move all files from html directory into the new directory
+
+leave .htaccess in /var/www/html/
+
+move directory:
+
+mv /path/sourcefolder/* /path/destinationfolder/
+
+
+
+
+
 
 
 
