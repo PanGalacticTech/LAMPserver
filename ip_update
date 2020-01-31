@@ -1,0 +1,11 @@
+crontab idea to update a file periodically with home router IP address in case of router reset and loosing the IP address
+
+
+could write a file to VPS or Dropbox. Google Drive?
+
+
+#!/bin/bash
+echo -e $(curl -s https://ipecho.net/plain)'\t'$(date) >> /home/user/Dropbox/ip_address
+
+
+Totally untested
