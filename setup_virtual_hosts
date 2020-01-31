@@ -2,3 +2,5 @@
 // Instructions on setting up virtual hosts in apache2
 
 
+
+/etc/apache2/sites-available/example.com.conf
