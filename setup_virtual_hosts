@@ -3,4 +3,71 @@
 
 
 
-/etc/apache2/sites-available/example.com.conf
+First, we need to create a webroot directory for the domain
+
+sudo mkdir -p /var/www/html/example.com/
+
+
+Next, we shall assign the necessary permissions to the directory using the $USER variable.
+
+$ sudo chown -R $USER:$USER /var/www/html/tecmint.com/
+
+
+Next, assign the necessary permissions of the webroot directory for the domain.
+
+$ sudo chmod -R 755 /var/www/html/tecmint.com
+
+
+Create index.html:
+ sudo nano /var/www/html/tecmint.com/index.html
+ 
+ add some HTML Content:
+ <html>
+    <head>
+        <title>Welcome to TecMint.com</title>
+    </head>
+    <body>
+        <h1>Howdy Geeks!</h1>
+    </body>
+</html>
+ 
+ 
+ 
+create virtual host file for the domain
+
+sudo nano/etc/apache2/sites-available/example.com.conf
+
+
+Paste this code into the text file:
+
+<VirtualHost *:80>
+    ServerAdmin admin@tecmint.com
+    ServerName tecmint.com
+    ServerAlias www.tecmint.com
+    DocumentRoot /var/www/html/tecmint.com/
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+
+save & exit
+
+
+At this point, enable the virtual host file as shown.
+
+$ sudo a2ensite tecmint.com.conf
+Now let’s disable the default site
+
+$ sudo a2dissite 000-default.conf
+To effect the changes, reload the apache webserver.
+
+$ sudo systemctl restart apache2
+Now reload your web server and notice the changes for your domain.
+
+
+Now SSL Can be setup for https:// accesss
+
+
+
+
+
