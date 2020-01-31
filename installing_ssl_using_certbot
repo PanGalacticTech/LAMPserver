@@ -11,6 +11,11 @@ sudo apt update
 
  sudo apt install python-certbot-apache -t buster-backports
  
+ if this line does not work on Raspberry Pi, Try:
+ 
+ sudo apt-get install certbot -y
+ 
+ 
  sudo certbot --apache -d your_domain -d www.your_domain
 
 
