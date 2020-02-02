@@ -1,0 +1,26 @@
+
+
+# God damn this has been this biggest ballach every.
+
+# Tips and tools to track and adjust htpp redirects etc
+
+
+
+# track redirects
+
+curl -s -L -D - http://pangalactictech.com -o /dev/null -w '%{url_effective}'
+
+curl - Command
+
+-s  silent mode
+
+-L follow redirects
+
+-D -      Dump headers here
+
+
+URL -- URL
+
+-o /dev/null    remove evetra stdout info
+
+-w '% {url_effective}'    Final Destination
