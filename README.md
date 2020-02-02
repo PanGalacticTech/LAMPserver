@@ -71,7 +71,11 @@ sudo service apache2 restart
 8.
 Install phpMyAdmin
 
-In order to manage our MySQL databases, it’s far easier to use phpMyAdmin so let’s go ahead and install it by entering the following command, but note* you’ll be asked the following questions during the installation process:
+In order to manage our MySQL databases, 
+it’s far easier to use phpMyAdmin
+so let’s go ahead and install it by entering 
+the following command, but note* you’ll be asked 
+the following questions during the installation process:
 
 
 Automatic Configuration? – 
@@ -120,9 +124,22 @@ local_umask=002
 allow_writeable_chroot=YES
 ftpd_banner=Welcome to my Raspberry Pi FTP service.
 
+# Designate Required FTP Ports. Ensure they are open in UFW
+# CUSTOM for use with UFW Firewall
+
+pasv_enable=YES
+pasv_min_port=10000
+pasv_max_port=11000
+
+
+
+
+
 10.
 Now we need to add a dedicated FTP user called piftp, so we enter the following commands and answer the questions as shown:
+
 sudo adduser piftp
+
 [enter password]
 [confirm password]
 Full Name: [type your name]
@@ -132,13 +149,22 @@ Home Phone: [press enter]
 Other: [press enter]
 Is this information correct?: y [press enter]
 
+
+
 11.
-We also need to add user piftp to the www-data group, give ownership of the /var/www folder to www-data user and group, change user piftp’s home folder to same, and loosen some permissions on the /var/www folder:
+We also need to add user piftp to the www-data group,
+give ownership of the /var/www folder to www-data user and group, 
+change user piftp’s home folder to same, 
+and loosen some permissions on the /var/www folder:
 
 sudo usermod -a -G www-data piftp
+
 sudo usermod -m -d /var/www piftp
+
 sudo chown -R www-data:www-data /var/www
+
 sudo chmod -R 775 /var/www
+
 
 12.
 …then restart the VSFTPD service:
