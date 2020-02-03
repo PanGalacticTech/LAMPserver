@@ -41,11 +41,8 @@ example/ current .htaccess file:
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
-#RewriteBase /
-#RewriteRule ^index\.php$ - [L]
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteRule . /index.php [L]
+RewriteBase /
+
 
 
 
@@ -53,14 +50,19 @@ RewriteEngine On
 # force https:// for all except some selected URLs
 
 RewriteCond %{HTTPS} off
-RewriteCond %{HTTP_HOST} %^"%envirostation/$" [NC]
+RewriteCond %{REQUEST_URI} !envirostation/ [NC]
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 
 # force http:// for selected URLs
-#RewriteCond %{HTTPS} on
-#RewriteCond %{HTTP_HOST} /envirostation/ [NC]
-#RewriteRule ^ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} on
+RewriteCond %{REQUEST_URI} envirostation/ [NC]
+RewriteRule ^ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
 
 
 # More lines from stack exchange. remove www:
@@ -74,4 +76,3 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 #RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
 
 </IfModule>
-
