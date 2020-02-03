@@ -28,3 +28,50 @@ URL -- URL
 -o /dev/null    remove evetra stdout info
 
 -w '% {url_effective}'    Final Destination
+
+
+create copy to revert back to:
+
+cp /var/www/html/.htaccess /var/www/html/.htaccess.backup
+
+
+
+example/ current .htaccess file:
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+#RewriteBase /
+#RewriteRule ^index\.php$ - [L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule . /index.php [L]
+
+
+
+
+# force https:// for all except some selected URLs
+
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} %^"%envirostation/$" [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+# force http:// for selected URLs
+#RewriteCond %{HTTPS} on
+#RewriteCond %{HTTP_HOST} /envirostation/ [NC]
+#RewriteRule ^ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+# More lines from stack exchange. remove www:
+
+#RewriteCond %{HTTPS} off
+#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+#RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+
+#RewriteCond %{HTTPS} on
+#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+#RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+</IfModule>
+
