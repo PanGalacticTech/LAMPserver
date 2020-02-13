@@ -101,9 +101,16 @@ OKAY ALT INSTRUCTIONS LANDED US HERE, but some of the rest of this may already b
 
 9. 
 Set up FTP:
-Now we need to install and setup VSFTPD and lock-down user pi to the /var/www folder, so let’s install the FTP service with the following command:
+Now we need to install and setup VSFTPD and lock-down user pi to the /var/www folder, 
+so let’s install the FTP service with the following command:
+
 sudo apt-get install vsftpd -y
-We need to open the sudo nano /etc/vsftpd.conf file and comment out the following two options:
+
+
+We need to open the 
+sudo nano /etc/vsftpd.conf
+
+file and comment out the following two options:
 This:
 local_enable=YES
 ssl_enable=NO
@@ -128,7 +135,9 @@ ftpd_banner=Welcome to my Raspberry Pi FTP service.
 # CUSTOM for use with UFW Firewall
 
 pasv_enable=YES
+
 pasv_min_port=10000
+
 pasv_max_port=11000
 
 
@@ -138,9 +147,12 @@ pasv_max_port=11000
 10.
 Now we need to add a dedicated FTP user called piftp, so we enter the following commands and answer the questions as shown:
 
+
 sudo adduser piftp
 
+
 [enter password]
+
 [confirm password]
 Full Name: [type your name]
 Room Number: [press enter]
