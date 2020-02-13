@@ -1,0 +1,6 @@
+
+
+edit dhcpcd file:
+
+sudo nano /etc/dhcpcd.conf
+
