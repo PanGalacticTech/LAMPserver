@@ -131,6 +131,9 @@ local_umask=002
 allow_writeable_chroot=YES
 ftpd_banner=Welcome to my Raspberry Pi FTP service.
 
+
+pay attention to Umask, not UNmask
+
 # Designate Required FTP Ports. Ensure they are open in UFW
 # CUSTOM for use with UFW Firewall
 
