@@ -180,6 +180,8 @@ sudo chmod -R 775 /var/www
 
 12.
 …then restart the VSFTPD service:
+
+edit : has it even been started yet?
 sudo service vsftpd restart
 
 13.
