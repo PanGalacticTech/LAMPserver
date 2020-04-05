@@ -18,6 +18,9 @@ sudo apt update
  
  sudo certbot --apache -d your_domain -d www.your_domain
 
+ sudo certbot --apache -d pangalactictech.com -d pangalactictech.com -d envirostation.pangalactictech.com -d www.envirostation.pangalactictech.com
+
+
 
 make sure firewall is set up to allow https service
 
